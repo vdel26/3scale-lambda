@@ -1,0 +1,16 @@
+{
+  "name": "3scale-lambda-auth",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Victor Delgado <victor@3scale.net>",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^0.14.4",
+    "split": "^1.0.0",
+    "through": "^2.3.8"
+  }
+}
