@@ -24,7 +24,7 @@ function getReplacementStream (providerKey) {
 // function file with the right key in place
 
 function getInputStream (providerKey) {
-  return fs.createReadStream(__dirname + '/input/aws_3scale_auth.js')
+  return fs.createReadStream(__dirname + '/deps/aws_3scale_auth.js')
           .pipe(split())
           .pipe(getReplacementStream(providerKey));
 }
@@ -49,6 +49,6 @@ module.exports = function generator (providerKey, destinationPath) {
 
   archive
     .append(getInputStream(providerKey), { name: 'aws_3scale_auth.js' })
-    .directory('input/node_modules', 'node_modules')
+    .directory('deps/node_modules', 'node_modules')
     .finalize();
 }
