@@ -49,6 +49,6 @@ module.exports = function generator (providerKey, destinationPath) {
 
   archive
     .append(getInputStream(providerKey), { name: 'aws_3scale_auth.js' })
-    .directory('deps/node_modules', 'node_modules')
+    .directory(__dirname + '/deps/node_modules', 'node_modules')
     .finalize();
 }
