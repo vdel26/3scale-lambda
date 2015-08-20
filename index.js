@@ -44,7 +44,7 @@ module.exports = function generator (options, destinationPath) {
   );
   output.on('close', function () {
     console.log(archive.pointer() + ' total bytes');
-    console.log('zip bundle is reddady');
+    console.log('zip bundle is ready');
   });
   archive.pipe(output);
 
