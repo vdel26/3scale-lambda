@@ -14,19 +14,20 @@ archive.on('error', function (err) {
 // get a readable-writable stream that applies a
 // string replacement over an input stream
 
-function getReplacementStream (providerKey) {
+function getReplacementStream (regex,value) {
   return through(function (line) {
-    this.queue(line.replace(/PROVIDER_KEY/, providerKey));
+    this.queue(line.replace(regex, value));
   });
 }
 
 // get a readable stream that returns the Lambda
 // function file with the right key in place
 
-function getInputStream (providerKey) {
+function getInputStream (options) {
   return fs.createReadStream(__dirname + '/deps/aws_3scale_auth.js')
           .pipe(split())
-          .pipe(getReplacementStream(providerKey));
+          .pipe(getReplacementStream(/PROVIDER_KEY/,options.providerKey))
+          .pipe(getReplacementStream(/SERVICE_ID/,options.serviceID));
 }
 
 /**
@@ -37,18 +38,18 @@ function getInputStream (providerKey) {
  * @param  {String} destinationPath – an absolute path (excluding filename)
  */
 
-module.exports = function generator (providerKey, destinationPath) {
+module.exports = function generator (options, destinationPath) {
   var output = fs.createWriteStream(
     path.join(destinationPath, '3scale-lambda-auth.zip')
   );
   output.on('close', function () {
     console.log(archive.pointer() + ' total bytes');
-    console.log('zip bundle is ready');
+    console.log('zip bundle is reddady');
   });
   archive.pipe(output);
 
   archive
-    .append(getInputStream(providerKey), { name: 'aws_3scale_auth.js' })
+    .append(getInputStream(options), { name: 'aws_3scale_auth.js' })
     .directory(__dirname + '/deps/node_modules', 'node_modules')
     .finalize();
 }
