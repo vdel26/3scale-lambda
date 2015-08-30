@@ -32,7 +32,11 @@ It is important that you create the method names in 3scale following this patter
 
 ```js
 var generator = require('3scale-lambda');
-generator('3SCALE_PROVIDER_KEY', '/output/path/');
+var params = {
+  providerKey: '3SCALE_PROVIDER_KEY',
+  serviceId: '3SCALE_SERVICE_ID'
+};
+generator(params, '/output/path/');
 ```
 
 This will create a zip file at `/output/path/3scale-lambda-auth.zip`. That zip is the bundle containing the Lambda function and all its dependencies, ready to be uploaded to AWS.

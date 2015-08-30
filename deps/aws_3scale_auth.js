@@ -1,7 +1,7 @@
 var threescale = require('3scale');
 var Client = threescale.Client;
 var client = new Client('PROVIDER_KEY');
-var serviceID = "SERVICE_ID";
+var serviceID = 'SERVICE_ID';
 
 function getMethodName (path, method) {
   if (!path || !method) return 'hits';
@@ -10,7 +10,7 @@ function getMethodName (path, method) {
 }
 
 function authenticate (user_key, method, callback) {
-  var options = { 'user_key': user_key, 'usage': {}, "service_id":serviceID };
+  var options = { 'user_key': user_key, 'usage': {}, 'service_id': serviceID };
 
   options['usage'][method] = 1;
 

@@ -14,7 +14,7 @@ archive.on('error', function (err) {
 // get a readable-writable stream that applies a
 // string replacement over an input stream
 
-function getReplacementStream (regex,value) {
+function getReplacementStream (regex, value) {
   return through(function (line) {
     this.queue(line.replace(regex, value));
   });
@@ -26,8 +26,8 @@ function getReplacementStream (regex,value) {
 function getInputStream (options) {
   return fs.createReadStream(__dirname + '/deps/aws_3scale_auth.js')
           .pipe(split())
-          .pipe(getReplacementStream(/PROVIDER_KEY/,options.providerKey))
-          .pipe(getReplacementStream(/SERVICE_ID/,options.serviceID));
+          .pipe(getReplacementStream(/PROVIDER_KEY/, options.providerKey))
+          .pipe(getReplacementStream(/SERVICE_ID/, options.serviceID));
 }
 
 /**
