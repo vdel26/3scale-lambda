@@ -1,6 +1,6 @@
 {
   "name": "3scale-lambda",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate an AWS Lambda function to authorize API calls using 3scale",
   "main": "index.js",
   "author": "Victor Delgado <victor@3scale.net>",
